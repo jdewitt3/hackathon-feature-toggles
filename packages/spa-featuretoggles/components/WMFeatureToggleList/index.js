@@ -29,7 +29,6 @@ class WMFeatureToggleList extends Component {
 	}
 
 	render () {
-		console.log(this.props);
 		const timeAgoEnglish = new javascriptTimeAgo('en-US');
 		const {
 			toggles
@@ -44,17 +43,17 @@ class WMFeatureToggleList extends Component {
 					>
 						<div style={ styles.toggleListItem }>
 							<div style={ styles.toggleListLeft }>
-								<div style={ styles.toggleNameLabel }>Toggle Name</div>
+								<div style={ styles.label }>Toggle Name</div>
 								<div style={ styles.toggleNameValue }>{ toggles[i].name }</div>
 								<div>{ timeAgoEnglish.format(toggles[i].createdOn) }</div>
 								<div>{ toggles[i].description }</div>
 							</div>
 							<div style={ styles.toggleListMidLeft }>
-								<div>Key</div>
+								<div style={ styles.label }>Key</div>
 								<div>{ toggles[i].key }</div>
 							</div>
 							<div style={ styles.toggleListMidRight }>
-								<div>Default Value</div>
+								<div style={ styles.label }>Default Value</div>
 								<div>{ toggles[i].defaultValue }</div>
 							</div>
 							<div style={ styles.toggleListRight }>
@@ -67,6 +66,7 @@ class WMFeatureToggleList extends Component {
 							<div>
 								<WMRaisedButton
 									label="Edit"
+									style={ { display: 'block', marginBottom: '5px' } }
 								/>
 								<WMRaisedButton
 									label="Delete"

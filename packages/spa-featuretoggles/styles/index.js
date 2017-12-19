@@ -25,7 +25,7 @@ export default {
 	toggleListRight: {
 		flex: '1'
 	},
-	toggleNameLabel: {
+	label: {
 		fontSize: '10px',
 		marginBottom: '4px'
 	},
