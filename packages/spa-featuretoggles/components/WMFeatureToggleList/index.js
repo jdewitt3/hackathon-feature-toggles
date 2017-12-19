@@ -31,7 +31,8 @@ class WMFeatureToggleList extends Component {
 	render () {
 		const timeAgoEnglish = new javascriptTimeAgo('en-US');
 		const {
-			toggles
+			toggles,
+			editForm
 		} = this.props;
 
 		const toggleListing = [];
@@ -67,6 +68,7 @@ class WMFeatureToggleList extends Component {
 								<WMRaisedButton
 									label="Edit"
 									style={ { display: 'block', marginBottom: '5px' } }
+									onClick={() => editForm(i)}
 								/>
 								<WMRaisedButton
 									label="Delete"
