@@ -1,0 +1,37 @@
+import WMFeatureTogglesSPA from './src/home';
+
+const functions = {
+	prependDollarSign: (amount) => {
+		return `$${amount}`;
+	},
+};
+
+const store = {
+	'FOO-FEATURE': {
+		initialState: {
+			data: {
+				submitLabel: 'Pay Now',
+			},
+		},
+		handlers: [
+			'FOO-FEATURE__UPDATE',
+		],
+	},
+};
+
+const config = {
+	uuid: 'featuretoggle-feature',
+	type: 'div',
+	props: {
+		className: 'container',
+	},
+	children: [
+		WMFeatureTogglesSPA
+	],
+};
+
+export {
+	functions,
+	store,
+	config as default,
+};

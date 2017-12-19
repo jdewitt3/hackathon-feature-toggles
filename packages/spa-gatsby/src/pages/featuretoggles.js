@@ -1,11 +1,8 @@
 import React from 'react';
-import featureTogglesConfig from '@workmarket/spa-featuretoggles';
-import ComponentWrapper from '../components/ComponentWrapper';
+import FeatureToggles from '@workmarket/spa-featuretoggles';
 
-const FeatureTogglesPage = () => (
-    <ComponentWrapper>
-        { featureTogglesConfig }
-    </ComponentWrapper>
+const FeaturePage = () => (
+    <FeatureToggles />
 );
 
-export default FeatureTogglesPage;
+export default FeaturePage;
