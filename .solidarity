@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json.schemastore.org/solidaritySchema",
+  "requirements": {
+    "GatsbyJS": [
+      {
+        "rule": "cli",
+        "binary": "gatsby",
+		"error": "Please install GatsbyJS (https://www.gatsbyjs.org/docs/) ^1.1.27 on this machine.",
+        "semver": "^1.1.27"
+      }
+    ],
+    "Lerna": [
+      {
+        "rule": "cli",
+		"binary": "lerna",
+		"error": "Please install Lerna (https://lernajs.io) ^2.5.1 on this machine.",
+        "semver": "^2.5.1"
+      }
+    ],
+    "Node": [
+      {
+        "rule": "cli",
+		"binary": "node",
+		"error": "Please install Node (https://nodejs.org/en/) ^8.9.3 on this machine.",
+        "semver": "^8.9.3"
+      }
+    ],
+    "Package JSON": [
+      {
+        "rule": "file",
+        "location": "./package.json"
+      }
+    ],
+    "Yarn": [
+      {
+        "rule": "cli",
+		"binary": "yarn",
+		"error": "Please install Yarn (https://yarnpkg.com/en/docs/install) ^1.2.0 on this machine.",
+        "semver": "^1.2.0"
+      }
+    ]
+  }
+}

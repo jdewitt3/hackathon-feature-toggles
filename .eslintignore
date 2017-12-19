@@ -1,0 +1,5 @@
+packages/spa-payments
+node_modules/**
+public
+.git
+.cache

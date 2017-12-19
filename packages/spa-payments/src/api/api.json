@@ -1,0 +1,4614 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "WorkMarket API",
+    "version" : "0.1.0",
+    "title" : "Swagger spec for WorkMarket API",
+    "termsOfService" : "https://developer.workmarket.com/tos",
+    "contact" : {
+      "name" : "WorkMarket API Team",
+      "url" : "https://developer.workmarket.com",
+      "email" : "api@workmarket.com"
+    },
+    "license" : {
+      "name" : "Company Licence",
+      "url" : "https://developer.workmarket.com/licenses/LICENSE-2.0.html"
+    }
+  },
+  "paths" : {
+    "/v3/enterprise/configuration/businessEntity" : {
+      "get" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Get all business entity types for the given core BusinessEntity",
+        "operationId" : "getBusinessEntityTypesUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "businessEntityUuid",
+          "description" : "businessEntityUuid",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntity»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/oauth/token" : {
+      "post" : {
+        "tags" : [ "o-auth-controller" ],
+        "summary" : "Get anew API Token",
+        "operationId" : "oauthTokenUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "grant_type",
+          "in" : "query",
+          "description" : "grant_type",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "code",
+          "in" : "query",
+          "description" : "code",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "redirect_uri",
+          "in" : "query",
+          "description" : "redirect_uri",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "client_id",
+          "in" : "query",
+          "description" : "client_id",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "description" : "username",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "description" : "password",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "client_secret",
+          "in" : "query",
+          "description" : "client_secret",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OauthTokenResponse»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ ]
+      }
+    },
+    "/v3/enterprise/configuration/validator" : {
+      "get" : {
+        "tags" : [ "configuration", "validator", "enterprise" ],
+        "summary" : "Get all wmValidators in the system",
+        "operationId" : "getValidatorsUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«WMFunction»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-unit" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Get org units.",
+        "operationId" : "getOrgUnitsUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/GetOrgUnitsRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgUnit»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/order/create" : {
+      "post" : {
+        "tags" : [ "order", "pay" ],
+        "summary" : "Create an Order",
+        "operationId" : "wm_create_order",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "order",
+          "description" : "order",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Order"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Order»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/table/pay-summary" : {
+      "get" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Display a table",
+        "operationId" : "getPaySummaryTableUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "tableSearchCriteria",
+          "description" : "tableSearchCriteria",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/wmTableSearchCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«wmTable»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/fieldType" : {
+      "get" : {
+        "tags" : [ "action", "configuration", "enterprise" ],
+        "summary" : "Get all fieldTypes in the system",
+        "operationId" : "getFieldTypesUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«fieldType»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-chart/create" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Create an org chart.",
+        "operationId" : "createOrgChartUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CreateOrgChart"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«ApiOrgChart»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/apishowservice/login" : {
+      "post" : {
+        "tags" : [ "api-controller" ],
+        "summary" : "Login",
+        "operationId" : "loginUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/LoginRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«LoginResponse»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ ]
+      }
+    },
+    "/v3/payment/{paymentUuid}" : {
+      "get" : {
+        "tags" : [ "pay", "payment" ],
+        "summary" : "Get a payment by UUID",
+        "operationId" : "viewPaymentByUuidUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "paymentUuid",
+          "in" : "path",
+          "description" : "UUID of the Payment in question",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Payment»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/payment/mark-as-paid" : {
+      "post" : {
+        "tags" : [ "pay", "payment" ],
+        "summary" : "Mark payments as paid (eg. for offline payments)",
+        "operationId" : "markPaymentsAsPaidUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "paymentUuids",
+          "description" : "UUIDs of the Payment in question",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Payment»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/oauth/redeem_auth_token" : {
+      "post" : {
+        "tags" : [ "auth-api-controller" ],
+        "summary" : "redeemAuthToken",
+        "operationId" : "redeemAuthTokenUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "redeemOAuthTokenRequest",
+          "description" : "redeemOAuthTokenRequest",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/RedeemOAuthTokenRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«RedeemOAuthTokenResponse»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/flowStatus" : {
+      "get" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Get all flowStatuses",
+        "operationId" : "getFlowStatusesUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«FlowStatus»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Add a flow status",
+        "operationId" : "createFlowStatusUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "flowStatus",
+          "description" : "flowStatus",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/FlowStatus"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«FlowStatus»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/payment/add-field" : {
+      "post" : {
+        "tags" : [ "configuration", "payment", "work", "enterprise" ],
+        "summary" : "Add a field to a Payment",
+        "operationId" : "addFieldToPaymentUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "fieldConfiguration",
+          "description" : "fieldConfiguration",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/FieldConfiguration"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntityConfiguration»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/businessEntityConfiguration" : {
+      "get" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Get all BusinessEntityConfigurations",
+        "operationId" : "getAllBusinessEntityConfigurationsUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntityConfiguration»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Create a business entity configuration",
+        "operationId" : "createBusinessEntityUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "businessEntityConfiguration",
+          "description" : "businessEntityConfiguration",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BusinessEntityConfiguration"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntityConfiguration»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-structure/create" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Create an org structure.",
+        "operationId" : "createOrgStructureUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CreateOrgStructure"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgStructure»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/businessEntityType" : {
+      "post" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Create a business entity type",
+        "operationId" : "createBusinessEntityTypeUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "businessEntityType",
+          "description" : "businessEntityType",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BusinessEntity"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntity»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/payment-terms" : {
+      "post" : {
+        "tags" : [ "pricing", "pay" ],
+        "summary" : "Get all account service types",
+        "operationId" : "getPaymentTermsUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«PaymentTerms»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-unit/{parentUuid}/list-children" : {
+      "get" : {
+        "tags" : [ "org" ],
+        "summary" : "Get children of an org unit.",
+        "operationId" : "getOrgUnitChildrenUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "parentUuid",
+          "in" : "path",
+          "description" : "parentUuid",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "isDraft",
+          "in" : "query",
+          "description" : "isDraft",
+          "required" : false,
+          "type" : "boolean",
+          "default" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«List«OrgUnit»»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-unit/update" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Update an org unit.",
+        "operationId" : "updateOrgUnitUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateOrgUnit"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgUnit»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/oauth/auth_ok" : {
+      "get" : {
+        "tags" : [ "o-auth-controller" ],
+        "summary" : "oauthAuthenticateOk",
+        "operationId" : "oauthAuthenticateOkUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "ok_token",
+          "in" : "query",
+          "description" : "ok_token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "state",
+          "in" : "query",
+          "description" : "state",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/flow/{flowUuid}/transition" : {
+      "post" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Create or update a flow transition",
+        "operationId" : "createFlowStatusTransitionUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "flowUuid",
+          "in" : "path",
+          "description" : "flowUuid",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "flowTransition",
+          "description" : "flowTransition",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/FlowStatusTransition"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«FlowStatus»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/apishowservice/hello" : {
+      "post" : {
+        "tags" : [ "api-controller" ],
+        "summary" : "Say Hello",
+        "operationId" : "helloUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/HelloRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«HelloResponse»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/oauth/auth" : {
+      "get" : {
+        "tags" : [ "o-auth-controller" ],
+        "summary" : "oauthAuthenticate",
+        "operationId" : "oauthAuthenticateUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "response_type",
+          "in" : "query",
+          "description" : "response_type",
+          "required" : true,
+          "type" : "string",
+          "enum" : [ "code", "token" ]
+        }, {
+          "name" : "client_id",
+          "in" : "query",
+          "description" : "client_id",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "redirect_uri",
+          "in" : "query",
+          "description" : "redirect_uri",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "scope",
+          "in" : "query",
+          "description" : "scope",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "state",
+          "in" : "query",
+          "description" : "state",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "format",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-members/update" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Update user membership for the given org unit.",
+        "operationId" : "updateOrgMembershipUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateMembershipRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgUnit»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/order/{orderNumber}" : {
+      "get" : {
+        "tags" : [ "order", "pay" ],
+        "summary" : "Get an order by number",
+        "operationId" : "wm_get_order_by_number",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orderNumber",
+          "in" : "path",
+          "description" : "Order Number",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Order»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/businessEntityConfiguration/{businessEntityTypeUuid}" : {
+      "get" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Get all BusinessEntityConfigurations for the given BusinessEntityType",
+        "operationId" : "getBusinessEntityConfigurationsUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "businessEntityTypeUuid",
+          "in" : "path",
+          "description" : "businessEntityTypeUuid",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntityConfiguration»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-unit/{uuid}/move" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Move org unit to beneath the specified parent.",
+        "operationId" : "moveOrgUnitUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "uuid",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/MoveOrgUnitRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgUnit»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/flow" : {
+      "get" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Get all flows",
+        "operationId" : "getFlowsUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Flow»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Create or update a flow",
+        "operationId" : "createFlowUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "flow",
+          "description" : "flow",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Flow"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Flow»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/oauth/login" : {
+      "post" : {
+        "tags" : [ "o-auth-controller" ],
+        "summary" : "oauthLogin",
+        "operationId" : "oauthLoginUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/user/whoami" : {
+      "get" : {
+        "tags" : [ "configuration", "flow", "enterprise" ],
+        "summary" : "Get a user's initial configuration",
+        "operationId" : "getUserConfigurationUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«UserConfiguration»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/order/list" : {
+      "post" : {
+        "tags" : [ "order", "pay" ],
+        "summary" : "List orders",
+        "operationId" : "wm_order_list",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "listOrderCriteria",
+          "description" : "listOrderCriteria",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ApiOrderCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Order»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/auth" : {
+      "post" : {
+        "tags" : [ "auth-api-controller" ],
+        "summary" : "Get an API Token",
+        "operationId" : "validateUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "request",
+          "description" : "request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ValidateCredentialsRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«ValidateCredentialsResponse»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ ]
+      }
+    },
+    "/v3/payment/create" : {
+      "get" : {
+        "tags" : [ "payment", "work", "enterprise" ],
+        "summary" : "Get a Payment for creating",
+        "operationId" : "getCreatePaymentUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntityConfiguration»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/coreEntity" : {
+      "get" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Get all core entities in the system",
+        "operationId" : "getCoreEntitiesUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«CoreEntity»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-unit-draft/create" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Add an org unit as draft.",
+        "operationId" : "addOrgUnitUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CreateOrgUnit"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgUnit»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/businessEntity/{businessEntityUuid}" : {
+      "get" : {
+        "tags" : [ "business", "configuration", "enterprise" ],
+        "summary" : "Get all business entity types for the given core BusinessEntity",
+        "operationId" : "getBusinessEntityTypeByBusinessEntityUuidUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "businessEntityUuid",
+          "in" : "path",
+          "description" : "businessEntityUuid",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«BusinessEntity»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/invoice/{invoiceNumber}" : {
+      "get" : {
+        "tags" : [ "invoice", "pay" ],
+        "summary" : "Get an invoice by number",
+        "operationId" : "viewInvoiceByNumberUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "invoiceNumber",
+          "in" : "path",
+          "description" : "Invoice Number",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Invoice»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-chart/{uuid}/publish" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Publish an org chart.",
+        "operationId" : "publishOrgChartUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "uuid",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«ApiOrgChart»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-unit/{uuid}/delete" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Delete or archive an org unit.",
+        "operationId" : "deleteOrgUnitUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "uuid",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgUnit»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-structure/{uuid}" : {
+      "get" : {
+        "tags" : [ "org" ],
+        "summary" : "Get an org structure.",
+        "operationId" : "getOrgStructureUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "uuid",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«OrgStructure»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/payment/{paymentNumber}" : {
+      "get" : {
+        "tags" : [ "pay", "payment" ],
+        "summary" : "Get a payment by number",
+        "operationId" : "viewPaymentByNumberUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "paymentNumber",
+          "in" : "path",
+          "description" : "Payment Number",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Payment»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/org-chart/get" : {
+      "post" : {
+        "tags" : [ "org" ],
+        "summary" : "Get an org chart.",
+        "operationId" : "getOrgChartUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "req",
+          "description" : "req",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/GetOrgChart"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«ApiOrgChart»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/enterprise/configuration/action" : {
+      "get" : {
+        "tags" : [ "action", "configuration", "enterprise" ],
+        "summary" : "Get all wmActions in the system",
+        "operationId" : "getActionsUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«WMAction»"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    },
+    "/v3/invoice/bill" : {
+      "post" : {
+        "tags" : [ "invoice", "pay" ],
+        "summary" : "Bill invoices, creating a payment for each invoice",
+        "operationId" : "billInvoicesUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "invoiceUuids",
+          "description" : "UUID of the Invoice in question",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV3Response«Invoice»"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "security" : [ {
+          "api-key" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api-key" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "OrgUnit" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "childCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "children" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OrgUnit"
+          }
+        },
+        "costCenterUuid" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "memberCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "members" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "order" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "orgChartUuid" : {
+          "type" : "string"
+        },
+        "parentUuid" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "ApiV3ResponseResult«Invoice»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/Invoice"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3ResponseResult«List«OrgUnit»»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/OrgUnit"
+            }
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "OauthTokenResponse" : {
+      "type" : "object",
+      "properties" : {
+        "accessToken" : {
+          "type" : "string"
+        },
+        "error" : {
+          "type" : "string"
+        },
+        "expiresIn" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "redirectUri" : {
+          "type" : "string"
+        },
+        "refreshToken" : {
+          "type" : "string"
+        },
+        "tokenType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Invoice" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "buyerCompanyUuid" : {
+          "type" : "string"
+        },
+        "buyerUserUuid" : {
+          "type" : "string"
+        },
+        "configuration" : {
+          "$ref" : "#/definitions/BusinessEntityConfiguration"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "effectiveDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Field"
+          }
+        },
+        "invoiceItems" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/InvoiceItem"
+          }
+        },
+        "memo" : {
+          "type" : "string"
+        },
+        "number" : {
+          "type" : "string"
+        },
+        "orders" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Order"
+          }
+        },
+        "paymentTerms" : {
+          "$ref" : "#/definitions/PaymentTerms"
+        },
+        "sellerCompanyUuid" : {
+          "type" : "string"
+        },
+        "sellerUserUuid" : {
+          "type" : "string"
+        },
+        "status" : {
+          "$ref" : "#/definitions/WorkflowInstance"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "ApiV3ResponseResultPagination" : {
+      "type" : "object",
+      "properties" : {
+        "offset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "page" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "results" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ApiV3Response«OrgStructure»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«OrgStructure»"
+        }
+      }
+    },
+    "ApiV3Response«Order»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«Order»"
+        }
+      }
+    },
+    "ApiV3ResponseResult«RedeemOAuthTokenResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/RedeemOAuthTokenResponse"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«CoreEntity»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«CoreEntity»"
+        }
+      }
+    },
+    "ApiV3ResponseResult«wmTable»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/wmTable"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«List«OrgUnit»»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«List«OrgUnit»»"
+        }
+      }
+    },
+    "wmTableColumn" : {
+      "type" : "object",
+      "properties" : {
+        "displayName" : {
+          "type" : "string"
+        },
+        "fieldConfigurationId" : {
+          "type" : "string"
+        },
+        "fieldDescription" : {
+          "type" : "string"
+        },
+        "frozen" : {
+          "type" : "boolean"
+        },
+        "sortDirection" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sortable" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "FieldConfiguration" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "autoCompleteTarget" : {
+          "description" : "Auto-Complete target",
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "customFieldType" : {
+          "description" : "Custom Field Type",
+          "$ref" : "#/definitions/fieldType"
+        },
+        "defaults" : {
+          "type" : "array",
+          "description" : "Default Values",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "This custom field is important!",
+          "description" : "Description"
+        },
+        "displayName" : {
+          "type" : "string",
+          "example" : "Custom Field",
+          "description" : "Display Name"
+        },
+        "formatter" : {
+          "description" : "Formatter",
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "custom-field",
+          "description" : "Field Name"
+        },
+        "options" : {
+          "type" : "array",
+          "description" : "Options",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "validators" : {
+          "type" : "array",
+          "description" : "Validators",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        }
+      }
+    },
+    "ValidateCredentialsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "cookie" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "FAIL", "OK", "WEAK_PASSWORD" ]
+        }
+      }
+    },
+    "ApiV3ResponseResult«FlowStatus»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/FlowStatus"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "FlowStatusTransition" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "actionUuids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMAction"
+          }
+        },
+        "availabilityValidatorUuids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "availabilityValidators" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "fromFlowStatusUuid" : {
+          "type" : "string"
+        },
+        "hookUuids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "hooks" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMAction"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "screenConfiguration" : {
+          "$ref" : "#/definitions/ScreenConfiguration"
+        },
+        "screenConfigurationUuid" : {
+          "type" : "string"
+        },
+        "toFlowStatusUuid" : {
+          "type" : "string"
+        },
+        "transitionValidatorUuids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "transitionValidators" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "ApiV3ResponseResult«OrgUnit»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/OrgUnit"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "RedeemOAuthTokenRequest" : {
+      "type" : "object",
+      "required" : [ "token" ],
+      "properties" : {
+        "token" : {
+          "type" : "string"
+        }
+      }
+    },
+    "BusinessEntity" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "coreEntity" : {
+          "$ref" : "#/definitions/CoreEntity"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "FlowStatus" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "flowStatusTransitions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FlowStatusTransition"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "workflowStatusType" : {
+          "type" : "string",
+          "enum" : [ "TODO", "IN_PROGRESS", "DONE" ]
+        }
+      }
+    },
+    "ApiV3Response«LoginResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«LoginResponse»"
+        }
+      }
+    },
+    "meta" : {
+      "type" : "object",
+      "properties" : {
+        "clientRequestId" : {
+          "type" : "string",
+          "description" : "Unique id provided by client"
+        },
+        "requestId" : {
+          "type" : "string",
+          "description" : "UUID of this request"
+        },
+        "responseTime" : {
+          "type" : "number",
+          "format" : "double",
+          "description" : "Server response time in seconds"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "HTTP status code of this response"
+        },
+        "timestamp" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Request start time in seconds from epoch"
+        }
+      },
+      "description" : "Metadata about this request"
+    },
+    "ApiV3Response«Payment»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«Payment»"
+        }
+      }
+    },
+    "wmSearchFilter" : {
+      "type" : "object",
+      "properties" : {
+        "constraintsJson" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "filterId" : {
+          "type" : "string"
+        },
+        "presets" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmSearchFilterPreset"
+          }
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "valueJson" : {
+          "type" : "string"
+        }
+      }
+    },
+    "fieldType" : {
+      "type" : "object",
+      "required" : [ "name", "uuid" ],
+      "properties" : {
+        "autoCompleteTarget" : {
+          "description" : "Auto-Complete Target",
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "coreValidators" : {
+          "type" : "array",
+          "description" : "Validators",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "formatter" : {
+          "description" : "Formatter",
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "ScreenConfiguration" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "fieldConfigurationUuids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "screen" : {
+          "$ref" : "#/definitions/Screen"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "wmTableCellValue" : {
+      "type" : "object",
+      "properties" : {
+        "sortValue" : {
+          "type" : "string"
+        },
+        "valueJson" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3ResponseResult«WMAction»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/WMAction"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "HelloRequest" : {
+      "type" : "object",
+      "required" : [ "name" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OrgStructure" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "companyUuid" : {
+          "type" : "string"
+        },
+        "createdOn" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "effectiveDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "updatedOn" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "orgCharts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ApiOrgChart"
+          }
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "wmTable" : {
+      "type" : "object",
+      "properties" : {
+        "bulkActions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "columns" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmTableColumn"
+          }
+        },
+        "pagination" : {
+          "$ref" : "#/definitions/Pagination"
+        },
+        "rows" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmTableRow"
+          }
+        },
+        "searchCriteria" : {
+          "$ref" : "#/definitions/wmTableSearchCriteria"
+        },
+        "title" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3ResponseResult«PaymentTerms»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/PaymentTerms"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "RedeemOAuthTokenResponse" : {
+      "type" : "object",
+      "properties" : {
+        "jwt" : {
+          "type" : "string"
+        },
+        "succeeded" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ApiV3ResponseResult«Order»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/Order"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«WMAction»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«WMAction»"
+        }
+      }
+    },
+    "ApiV3ResponseResult«Flow»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/Flow"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "BusinessEntityConfiguration" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "businessEntity" : {
+          "$ref" : "#/definitions/BusinessEntity"
+        },
+        "dashboards" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmTableConfiguration"
+          }
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FieldConfiguration"
+          }
+        },
+        "flow" : {
+          "$ref" : "#/definitions/Flow"
+        },
+        "screenConfigurations" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "$ref" : "#/definitions/ScreenConfiguration"
+          }
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "ValidateCredentialsRequest" : {
+      "type" : "object",
+      "required" : [ "ip", "password", "username" ],
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "ip" : {
+          "type" : "string"
+        }
+      }
+    },
+    "wmTableCell" : {
+      "type" : "object",
+      "properties" : {
+        "cellValue" : {
+          "$ref" : "#/definitions/wmTableCellValue"
+        },
+        "fieldConfigurationId" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3Error" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string"
+        },
+        "field" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "resource" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3ResponseResult«ApiOrgChart»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/ApiOrgChart"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«WMFunction»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«WMFunction»"
+        }
+      }
+    },
+    "ApiV3ResponseResult«UserConfiguration»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/UserConfiguration"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«wmTable»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«wmTable»"
+        }
+      }
+    },
+    "Flow" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "flowStatuses" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FlowStatus"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "wmSearchFilterPreset" : {
+      "type" : "object",
+      "properties" : {
+        "displayName" : {
+          "type" : "string"
+        },
+        "presetValue" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiOrderCriteria" : {
+      "type" : "object",
+      "required" : [ "orderStates" ],
+      "properties" : {
+        "orderStates" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ApiV3ResponseResult«Payment»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/Payment"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "OrderItem" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "amount" : {
+          "type" : "number"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "goodOrService" : {
+          "$ref" : "#/definitions/BusinessEntitySummary"
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "WORK", "DELIVERABLE", "EXPENSE", "OTHER" ]
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "WMFunction" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "args" : {
+          "type" : "string",
+          "description" : "The argument(s) to include as context for the function"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "A description of the capability that this WMFunction provides"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the library capability that should be invoked 'VIEW', 'MANAGE', etc"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The type of BusinessEntity to use for context of this function"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "worktronFunctionType" : {
+          "type" : "string",
+          "description" : "Pointer to which front-end capability library (e.g. ROUTE, VALIDATE) will be invoked",
+          "enum" : [ "ROUTE", "UI", "VALIDATE", "READ", "WRITE", "AUTO_COMPLETE", "FORMAT" ]
+        }
+      }
+    },
+    "CreateOrgUnit" : {
+      "type" : "object",
+      "required" : [ "children", "description", "name", "order", "parentUuid" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "parentUuid" : {
+          "type" : "string"
+        },
+        "order" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "children" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CreateOrgUnit"
+          }
+        }
+      }
+    },
+    "ApiV3ResponseResult«HelloResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/HelloResponse"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "CoreEntity" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "implementation" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "MoveOrgUnitRequest" : {
+      "type" : "object",
+      "required" : [ "order", "parentUuid", "uuid" ],
+      "properties" : {
+        "uuid" : {
+          "type" : "string"
+        },
+        "parentUuid" : {
+          "type" : "string"
+        },
+        "order" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "wmTableConfiguration" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "businessEntityConfigurationUuid" : {
+          "type" : "string"
+        },
+        "fieldConfigurationUuids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "keyFields" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "perPage" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "screen" : {
+          "$ref" : "#/definitions/Screen"
+        },
+        "sortDirection" : {
+          "type" : "string"
+        },
+        "sortField" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "Company" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "configuration" : {
+          "$ref" : "#/definitions/BusinessEntityConfiguration"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Field"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "parent" : {
+          "$ref" : "#/definitions/Company"
+        },
+        "status" : {
+          "$ref" : "#/definitions/WorkflowInstance"
+        },
+        "subsidiaries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Company"
+          }
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "ApiV3Response«ValidateCredentialsResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«ValidateCredentialsResponse»"
+        }
+      }
+    },
+    "CreateOrgChart" : {
+      "type" : "object",
+      "required" : [ "name", "orgStructureUuid", "orgType", "orgUnit" ],
+      "properties" : {
+        "orgStructureUuid" : {
+          "type" : "string"
+        },
+        "orgType" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "orgUnit" : {
+          "$ref" : "#/definitions/CreateOrgUnit"
+        }
+      }
+    },
+    "ApiV3Response«BusinessEntityConfiguration»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«BusinessEntityConfiguration»"
+        }
+      }
+    },
+    "ApiV3Response«BusinessEntity»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«BusinessEntity»"
+        }
+      }
+    },
+    "WorkflowInstance" : {
+      "type" : "object",
+      "properties" : {
+        "flowStatusUuid" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Pagination" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "pageSize" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "results" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "totalPageCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalRecordCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ApiV3ResponseResult«OrgStructure»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/OrgStructure"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«OauthTokenResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«OauthTokenResponse»"
+        }
+      }
+    },
+    "ApiV3Response«UserConfiguration»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«UserConfiguration»"
+        }
+      }
+    },
+    "ApiV3Response«ApiOrgChart»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«ApiOrgChart»"
+        }
+      }
+    },
+    "ApiV3ResponseResult«BusinessEntityConfiguration»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/BusinessEntityConfiguration"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "UserAtCompany" : {
+      "type" : "object",
+      "properties" : {
+        "company" : {
+          "$ref" : "#/definitions/Company"
+        },
+        "orgRelationships" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "$ref" : "#/definitions/OrgUnit"
+          }
+        },
+        "taxEntity" : {
+          "$ref" : "#/definitions/TaxEntity"
+        },
+        "user" : {
+          "$ref" : "#/definitions/User"
+        }
+      }
+    },
+    "Collection«string»" : {
+      "type" : "object"
+    },
+    "ApiV3Response«fieldType»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«fieldType»"
+        }
+      }
+    },
+    "BusinessEntitySummary" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "businessEntityUuid" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "Route" : {
+      "type" : "object",
+      "properties" : {
+        "function" : {
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "uiType" : {
+          "type" : "string",
+          "enum" : [ "BLANK", "CREATE", "VIEW", "MANAGE", "LIST" ]
+        },
+        "uri" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiOrgChart" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "companyUuid" : {
+          "type" : "string"
+        },
+        "createdBy" : {
+          "type" : "string"
+        },
+        "createdOn" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "deletedOn" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "draft" : {
+          "type" : "boolean"
+        },
+        "effectiveDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "lockedByUserUuid" : {
+          "type" : "string"
+        },
+        "lockedOn" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "updatedOn" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "orgStructureUuid" : {
+          "type" : "string"
+        },
+        "orgType" : {
+          "type" : "string"
+        },
+        "orgUnit" : {
+          "$ref" : "#/definitions/OrgUnit"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Order" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "buyerCompanyUuid" : {
+          "type" : "string"
+        },
+        "buyerUserUuid" : {
+          "type" : "string"
+        },
+        "configuration" : {
+          "$ref" : "#/definitions/BusinessEntityConfiguration"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Field"
+          }
+        },
+        "invoice" : {
+          "$ref" : "#/definitions/Invoice"
+        },
+        "invoiceUuid" : {
+          "type" : "string"
+        },
+        "memo" : {
+          "type" : "string"
+        },
+        "number" : {
+          "type" : "string"
+        },
+        "orderItems" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OrderItem"
+          }
+        },
+        "paymentTerms" : {
+          "$ref" : "#/definitions/PaymentTerms"
+        },
+        "scheduledInvoiceDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "sellerCompanyUuid" : {
+          "type" : "string"
+        },
+        "sellerUserUuid" : {
+          "type" : "string"
+        },
+        "status" : {
+          "$ref" : "#/definitions/WorkflowInstance"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "GetOrgChart" : {
+      "type" : "object",
+      "required" : [ "draft", "orgChartUuid" ],
+      "properties" : {
+        "orgChartUuid" : {
+          "type" : "string"
+        },
+        "draft" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "LoginResponse" : {
+      "type" : "object",
+      "properties" : {
+        "token" : {
+          "type" : "string"
+        }
+      }
+    },
+    "wmTableSearchCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "columns" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmTableColumn"
+          }
+        },
+        "route" : {
+          "type" : "string"
+        },
+        "searchFilters" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmSearchFilter"
+          }
+        }
+      }
+    },
+    "SettingsDimensions" : {
+      "type" : "object",
+      "properties" : {
+        "base" : {
+          "type" : "string"
+        },
+        "business" : {
+          "type" : "string"
+        },
+        "company" : {
+          "type" : "string"
+        },
+        "department" : {
+          "type" : "string"
+        },
+        "override" : {
+          "type" : "string"
+        },
+        "special" : {
+          "type" : "string"
+        },
+        "user" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3ResponseResult«BusinessEntity»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/BusinessEntity"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«HelloResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«HelloResponse»"
+        }
+      }
+    },
+    "Payment" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "amount" : {
+          "type" : "number"
+        },
+        "configuration" : {
+          "$ref" : "#/definitions/BusinessEntityConfiguration"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "effectiveDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Field"
+          }
+        },
+        "invoice" : {
+          "$ref" : "#/definitions/Invoice"
+        },
+        "payeeCompany" : {
+          "$ref" : "#/definitions/Company"
+        },
+        "payeeCompanyUuid" : {
+          "type" : "string"
+        },
+        "payeeUser" : {
+          "$ref" : "#/definitions/UserAtCompany"
+        },
+        "payeeUserUuid" : {
+          "type" : "string"
+        },
+        "status" : {
+          "$ref" : "#/definitions/WorkflowInstance"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "UpdateMembershipRequest" : {
+      "type" : "object",
+      "required" : [ "memberUuidList", "orgUnitUuid" ],
+      "properties" : {
+        "orgUnitUuid" : {
+          "type" : "string"
+        },
+        "memberUuidList" : {
+          "$ref" : "#/definitions/Collection«string»"
+        }
+      }
+    },
+    "WMCurrency" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "code" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "HelloResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3ResponseResult«ValidateCredentialsResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/ValidateCredentialsResponse"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "InvoiceItem" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "amount" : {
+          "type" : "number"
+        },
+        "invoice" : {
+          "$ref" : "#/definitions/Invoice"
+        },
+        "memo" : {
+          "type" : "string"
+        },
+        "orderItems" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OrderItem"
+          }
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "WORK", "DELIVERABLE", "EXPENSE", "OTHER" ]
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "User" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "configuration" : {
+          "$ref" : "#/definitions/BusinessEntityConfiguration"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Field"
+          }
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "status" : {
+          "$ref" : "#/definitions/WorkflowInstance"
+        },
+        "username" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "Screen" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "LoginRequest" : {
+      "type" : "object",
+      "required" : [ "password", "username" ],
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PaymentTerms" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "days" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "SYSTEM_NOT_DELETABLE", "SYSTEM", "CUSTOM" ]
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        }
+      }
+    },
+    "Field" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "fieldConfigurationUuid" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ApiV3Response«OrgUnit»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«OrgUnit»"
+        }
+      }
+    },
+    "CreateOrgStructure" : {
+      "type" : "object",
+      "required" : [ "description", "name", "version" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ApiV3ResponseResult«WMFunction»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«FlowStatus»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«FlowStatus»"
+        }
+      }
+    },
+    "GetOrgUnitsRequest" : {
+      "type" : "object",
+      "required" : [ "depth", "draft", "orgUnitUuid" ],
+      "properties" : {
+        "orgUnitUuid" : {
+          "type" : "string"
+        },
+        "depth" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "draft" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ApiV3ResponseResult«CoreEntity»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/CoreEntity"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "UserConfiguration" : {
+      "type" : "object",
+      "properties" : {
+        "actionHistory" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "apiOrgUnits" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OrgUnit"
+          }
+        },
+        "avatar" : {
+          "$ref" : "#/definitions/WMImage"
+        },
+        "currency" : {
+          "$ref" : "#/definitions/WMCurrency"
+        },
+        "entityConfigurations" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/BusinessEntityConfiguration"
+          }
+        },
+        "footerNav" : {
+          "$ref" : "#/definitions/NavItem"
+        },
+        "locale" : {
+          "type" : "string"
+        },
+        "logo" : {
+          "$ref" : "#/definitions/WMImage"
+        },
+        "mainNav" : {
+          "$ref" : "#/definitions/NavItem"
+        },
+        "notifications" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Alert"
+          }
+        },
+        "routes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Route"
+          }
+        },
+        "selectedApiOrgUnit" : {
+          "$ref" : "#/definitions/OrgUnit"
+        },
+        "settingsDimensions" : {
+          "$ref" : "#/definitions/SettingsDimensions"
+        },
+        "userNav" : {
+          "$ref" : "#/definitions/NavItem"
+        },
+        "welcomeAction" : {
+          "$ref" : "#/definitions/WMFunction"
+        }
+      }
+    },
+    "ApiV3Response«PaymentTerms»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«PaymentTerms»"
+        }
+      }
+    },
+    "ApiV3ResponseResult«LoginResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/LoginResponse"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "wmTableRow" : {
+      "type" : "object",
+      "properties" : {
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "cells" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/wmTableCell"
+          }
+        },
+        "rowId" : {
+          "type" : "string"
+        },
+        "selected" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ApiV3ResponseResult«fieldType»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/fieldType"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«RedeemOAuthTokenResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«RedeemOAuthTokenResponse»"
+        }
+      }
+    },
+    "WMAction" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "args" : {
+          "type" : "string",
+          "description" : "The argument(s) to include as context for the function"
+        },
+        "availabilityValidator" : {
+          "description" : "Visibility Validator",
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "A description of the capability that this WMFunction provides"
+        },
+        "executionValidator" : {
+          "description" : "Execution Validator",
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the library capability that should be invoked 'VIEW', 'MANAGE', etc"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The type of BusinessEntity to use for context of this function"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "worktronFunctionType" : {
+          "type" : "string",
+          "description" : "Pointer to which front-end capability library (e.g. ROUTE, VALIDATE) will be invoked",
+          "enum" : [ "ROUTE", "UI", "VALIDATE", "READ", "WRITE", "AUTO_COMPLETE", "FORMAT" ]
+        }
+      }
+    },
+    "ApiV3ResponseResult«OauthTokenResponse»" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "description" : "errors",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        },
+        "pagination" : {
+          "description" : "Information about pagination",
+          "$ref" : "#/definitions/ApiV3ResponseResultPagination"
+        },
+        "payload" : {
+          "type" : "array",
+          "description" : "List of results",
+          "items" : {
+            "$ref" : "#/definitions/OauthTokenResponse"
+          }
+        },
+        "warnings" : {
+          "type" : "array",
+          "description" : "warnings",
+          "items" : {
+            "$ref" : "#/definitions/ApiV3Error"
+          }
+        }
+      }
+    },
+    "ApiV3Response«Invoice»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«Invoice»"
+        }
+      }
+    },
+    "Alert" : {
+      "type" : "object",
+      "properties" : {
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WMFunction"
+          }
+        },
+        "alertDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "readDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "NavItem" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "$ref" : "#/definitions/WMFunction"
+        },
+        "children" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/NavItem"
+          }
+        },
+        "icon" : {
+          "$ref" : "#/definitions/WMImage"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TaxEntity" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "activeDateString" : {
+          "type" : "string"
+        },
+        "activeFlag" : {
+          "type" : "boolean"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "businessFlag" : {
+          "type" : "boolean"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "configuration" : {
+          "$ref" : "#/definitions/BusinessEntityConfiguration"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "deliveryPolicyFlag" : {
+          "type" : "boolean"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Field"
+          }
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "middleName" : {
+          "type" : "string"
+        },
+        "postalCode" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "status" : {
+          "$ref" : "#/definitions/WorkflowInstance"
+        },
+        "taxCountry" : {
+          "type" : "string"
+        },
+        "taxEntityTypeCode" : {
+          "type" : "string"
+        },
+        "taxName" : {
+          "type" : "string"
+        },
+        "taxNumber" : {
+          "type" : "string"
+        },
+        "taxVerificationStatusCode" : {
+          "type" : "string"
+        },
+        "uuid" : {
+          "type" : "string",
+          "description" : "Unique identifier"
+        },
+        "verificationPending" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "UpdateOrgUnit" : {
+      "type" : "object",
+      "required" : [ "description", "isPublish", "name", "uuid" ],
+      "properties" : {
+        "uuid" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "isPublish" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ApiV3Response«Flow»" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Metadata about this request",
+          "$ref" : "#/definitions/meta"
+        },
+        "result" : {
+          "description" : "Results envelope",
+          "$ref" : "#/definitions/ApiV3ResponseResult«Flow»"
+        }
+      }
+    },
+    "WMImage" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+html {
+  background: #f1f1f1;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+#wm-main-content {
+  margin-top: 64px;
+  transition: margin-left 0.3s ease-out;
+}
+.container {
+  padding: 20px 69px;
+}

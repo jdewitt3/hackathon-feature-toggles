@@ -1,0 +1,83 @@
+{
+  "name": "@workmarket/spa-gatsby",
+  "description": "Gatsby default starter",
+  "version": "0.0.1",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "build": "rm -rf .cache public && gatsby build",
+    "deploy": "yarn build && aws s3 cp --recursive ./public/ s3://s3-worktronspa-001.nonprod.us-east-1.workmarket.com --profile wmnonprod --acl public-read --cache-control 'max-age=5'",
+    "develop": "gatsby develop -p 7777 --host localhost",
+    "api": "node ./node_modules/.bin/projekt_good_job",
+    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "lint": "./node_modules/.bin/eslint \"src/**/*.js\"",
+    "precommit": "lint-staged",
+    "reset": "rm -rf ./.cache ./public ./node_modules && yarn install",
+    "serve": "gatsby serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate": "npm ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workmarket/spa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/workmarket/spa/issues"
+  },
+  "homepage": "https://github.com/workmarket/spa#readme",
+  "dependencies": {
+    "@workmarket/front-end-components": "9.9.1-alpha.4",
+    "@workmarket/front-end-patterns": "4.7.0",
+    "@workmarket/js-utils": "3.2.1",
+    "@workmarket/lolz": "7.0.0",
+    "@workmarket/spa-featuretoggles": "^1.0.0",
+    "@workmarket/spa-foo": "0.0.1",
+    "@workmarket/spa-generate": "0.0.1",
+    "@workmarket/spa-payments": "0.0.1",
+    "@workmarket/ui-generation": "3.0.0-alpha.58",
+    "gatsby": "1.9.99",
+    "gatsby-link": "1.6.24",
+    "gatsby-plugin-offline": "1.0.10",
+    "gatsby-plugin-react-helmet": "1.0.8",
+    "gatsby-source-filesystem": "1.5.8",
+    "ramda": "0.25.0",
+    "react-redux": "5.0.6",
+    "react-tap-event-plugin": "2.0.1",
+    "redux-devtools-extension": "2.13.2",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.2.0"
+  },
+  "devDependencies": {
+    "@workmarket/projekt_good_job": "^1.1.0",
+    "babel-eslint": "8.0.2",
+    "babel-polyfill": "6.26.0",
+    "bluebird": "3.5.1",
+    "chokidar": "1.7.0",
+    "crypto": "1.0.1",
+    "eslint": "4.11.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.4.0",
+    "fs": "0.0.1-security",
+    "glob": "7.1.2",
+    "graphql": "0.11.7",
+    "lint-staged": "5.0.0",
+    "parse-filepath": "1.0.1",
+    "path": "0.12.7",
+    "pre-commit": "1.2.2",
+    "prettier": "1.7.4",
+    "prettier-eslint-cli": "4.4.0",
+    "slash": "1.0.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "pre-commit": [
+    "precommit"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "spa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd packages/spa-gatsby && gatsby build",
+    "deploy": "cd packages/spa-gatsby && yarn deploy",
+    "develop": "cd packages/spa-gatsby && yarn develop",
+    "api": "cd packages/spa-gatsby && yarn api",
+    "precommit": "lint-staged",
+    "reset": "rm -rf packages/spa-gatsby/public && find . -name \"node_modules\" -type d -exec rm -rf '{}' + && find . -name \".cache\" -type d -exec rm -rf '{}' +",
+    "serve": "cd packages/spa-gatsby && yarn serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workmarket/spa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/workmarket/spa/issues"
+  },
+  "homepage": "https://github.com/workmarket/spa#readme",
+  "devDependencies": {
+    "babel-eslint": "8.0.2",
+    "eslint": "4.11.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.5.1",
+    "flow-remove-types": "1.2.3",
+    "lerna": "^2.5.1",
+    "lint-staged": "5.0.0",
+    "pre-commit": "1.2.2"
+  },
+  "lint-staged": {
+    "packages/spa-gatsby/*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "packages/spa-generate/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "precommit"
+  ],
+  "dependencies": {}
+}
