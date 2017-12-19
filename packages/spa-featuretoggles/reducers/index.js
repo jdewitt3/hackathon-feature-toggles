@@ -1,31 +1,31 @@
-import { Map } from 'immutable';
-import {
-	combineReducers,
-} from 'redux';
+import Immutable, { Map, List } from 'immutable';
 //import * as types from '../constants/actionTypes';
-import featureToggles, {
-	initialFeatureTogglesState,
-} from './';
 
-/* const companyInfoReceived = (state = false, {
-	type,
-}) => {
+const initialState = new Map({
+	toggles: new List([
+		{
+			name: 'Test Toggle',
+			key: 'testToggle',
+			description: 'just a test yall',
+			defaultValue: 'false',
+			createdOn: new Date(1513713075),
+			updatedOn: new Date(1513713075),
+		}
+	])
+});
+
+const reducer = (
+	state = initialState,
+	{
+		type,
+		value,
+	}
+) => {
 	switch (type) {
-	case types.RECEIVE_COMPANY_INFO:
-		return true;
 	default:
 		return state;
 	}
-}; */
-
-const initialState = Map({
-	featureToggle: initialFeatureTogglesState
-});
-
-export {
-	initialState,
 };
 
-export default combineReducers({
-	featureToggles
-});
+export { initialState };
+export default reducer;

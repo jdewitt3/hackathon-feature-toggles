@@ -21,6 +21,7 @@ const stateTransformer = (state) => {
 const logger = createLogger({
 	stateTransformer,
 });
+console.log(reducer);
 
 // set up middleware
 const middlewares = [reduxthunk];

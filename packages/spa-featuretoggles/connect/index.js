@@ -1,10 +1,8 @@
 //import * as actions from './../actions';
 
-export const mapStateToProps = ({
-	featureToggle
-}) => ({
-	featureToggle
-});
+export const mapStateToProps = (state) => {
+	return state.toJS();
+};
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
 	/* const {

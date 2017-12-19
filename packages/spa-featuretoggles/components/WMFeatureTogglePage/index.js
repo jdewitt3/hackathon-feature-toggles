@@ -12,13 +12,16 @@ import {
 	WMTableCell,
 	WMTableHeader,
 	WMTableHeaderCell,
-	WMHeading
+	WMHeading,
+	WMTextField,
+	WMRaisedButton
 } from '@workmarket/front-end-components';
 import {
 	mapStateToProps,
 	mapDispatchToProps,
 } from '../../connect';
 import styles from '../../styles';
+import WMFeatureToggleList from '../WMFeatureToggleList'
 
 class WMFeatureTogglePage extends Component {
 	componentDidMount () {
@@ -38,23 +41,23 @@ class WMFeatureTogglePage extends Component {
 				<WMPaper
 					style={ styles.container }
 				>
-					<WMTable
-						striped
+					<div
+						style={ styles.headerBar }
 					>
-						<WMHeading>
-							Feature Toggles
-						</WMHeading>
-						<WMTableHeader>
-						<WMTableHeaderCell>Cell One</WMTableHeaderCell>
-						<WMTableHeaderCell>Cell Two</WMTableHeaderCell>
-						</WMTableHeader>
-						<WMTableBody>
-							<WMTableRow>
-								<WMTableCell>Cell One</WMTableCell>
-								<WMTableCell>Cell Two</WMTableCell>
-							</WMTableRow>
-						</WMTableBody>
-					</WMTable>
+						<WMTextField
+							disabled={ false }
+							id="search-toggles"
+							defaultValue="Search for a Feature"
+						/>
+						<WMRaisedButton
+							label="New Feature"
+							primary
+							style={ styles.newButton }
+						/>
+					</div>
+					<div>
+						<WMFeatureToggleList />
+					</div>
 				</WMPaper>
 			</div>
 		);
