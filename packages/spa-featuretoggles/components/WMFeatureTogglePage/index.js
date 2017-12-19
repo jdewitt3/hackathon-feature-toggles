@@ -21,7 +21,8 @@ import {
 	mapDispatchToProps,
 } from '../../connect';
 import styles from '../../styles';
-import WMFeatureToggleList from '../WMFeatureToggleList'
+import WMFeatureToggleList from '../WMFeatureToggleList';
+import WMFeatureForm from '../WMFeatureForm';
 
 class WMFeatureTogglePage extends Component {
 	componentDidMount () {
@@ -33,7 +34,8 @@ class WMFeatureTogglePage extends Component {
 
 	render () {
 		const {
-
+			form,
+			newToggleForm
 		} = this.props;
 		return (
 			<div
@@ -53,9 +55,11 @@ class WMFeatureTogglePage extends Component {
 							label="New Feature"
 							primary
 							style={ styles.newButton }
+							onClick={newToggleForm}
 						/>
 					</div>
 					<div>
+						{form.isActive ? <WMFeatureForm /> : null}
 						<WMFeatureToggleList />
 					</div>
 				</WMPaper>
