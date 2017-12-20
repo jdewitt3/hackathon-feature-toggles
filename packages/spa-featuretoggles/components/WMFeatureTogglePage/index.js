@@ -60,8 +60,7 @@ class WMFeatureTogglePage extends Component {
 						/>
 					</div>
 					<div>
-						{form.isActive ? <WMFeatureForm /> : null}
-						<WMFeatureToggleList />
+						{form.isActive ? <WMFeatureForm /> : <WMFeatureToggleList />}
 					</div>
 				</WMPaper>
 			</div>

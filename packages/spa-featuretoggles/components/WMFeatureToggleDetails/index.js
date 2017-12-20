@@ -68,6 +68,8 @@ const WMFeatureToggleDetails = ({
 							>
 								<WMMenuItem value="requestBased" primaryText="Request Based" />
 								<WMMenuItem value="sticky" primaryText="Sticky" />
+								<WMMenuItem value="openBeta" primaryText="Open Beta" />
+								<WMMenuItem value="openBeta" primaryText="Closed Beta" />
 							</WMSelectField>
 							<div
 								style={ { display: 'inline-block', width: '300px', float: 'left', padding: '8px 0px 0px 35px' } }
