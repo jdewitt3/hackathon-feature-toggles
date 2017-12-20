@@ -28,7 +28,9 @@ class WMFeatureForm extends Component {
             form,
             updateFormProp,
             saveForm,
-            cancelForm
+            cancelForm,
+						selectCompany,
+						selectedCompanies
         } = this.props;
         const isValid = form.props.name.length && form.props.key.length && form.props.defaultValue.length && form.props.description.length;
 
@@ -67,6 +69,8 @@ class WMFeatureForm extends Component {
                     isRolloutEnable={ true }
                     percentValue={ 12 }
                     typeValue={ 1 }
+										selectCompany={ selectCompany }
+										selectedCompanies={ selectedCompanies }
                 />
 			</div>
 		);

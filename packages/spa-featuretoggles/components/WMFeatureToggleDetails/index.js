@@ -11,6 +11,8 @@ import {
 	WMPaper,
 	WMSlider,
 	WMSelectField,
+	WMAutocomplete,
+	WMChip,
 	commonStyles,
 } from '@workmarket/front-end-components';
 
@@ -19,12 +21,32 @@ import {
 // 	mapDispatchToProps,
 // } from '../../connect';
 
+const dataSource = [
+  {textKey: 'Reliable Electric Co', valueKey: '1'},
+  {textKey: 'New York Times', valueKey: '2'},
+	{textKey: 'Walgreens', valueKey: '3'},
+	{textKey: 'Some Company', valueKey: '4'},
+];
+
 const WMFeatureToggleDetails = ({
 	isDirtyState,
 	isRolloutEnabled,
 	perecentValue,
 	typeValue,
+	selectCompany,
+	selectedCompanies
 }) => {
+	const companyChips = [];
+	console.log(selectedCompanies);
+	for(let i = 0; i < selectedCompanies.length; i+=1) {
+		console.log(selectedCompanies[i]);
+		companyChips.push(<WMChip
+			id="wm-chip-test"
+			label={ selectedCompanies[i].textKey }
+			meta={ { } }
+			onRemove={ () => console.log('remove') }
+		/>);
+	}
 	return (
 		<WMPaper
 			style={ { padding: '10px'} }
@@ -62,20 +84,21 @@ const WMFeatureToggleDetails = ({
 								autoWidth
 								floatingLabelText="Type"
 								floatingLabelFixed
-								value={ typeValue }
+								value={ "closedBeta" }
 								style={ { display: 'inline-block', float: 'left' } }
 								onChange={ console.log('onChange select type') }
 							>
 								<WMMenuItem value="requestBased" primaryText="Request Based" />
 								<WMMenuItem value="sticky" primaryText="Sticky" />
 								<WMMenuItem value="openBeta" primaryText="Open Beta" />
-								<WMMenuItem value="openBeta" primaryText="Closed Beta" />
+								<WMMenuItem value="closedBeta" primaryText="Closed Beta" />
 							</WMSelectField>
 							<div
 								style={ { display: 'inline-block', width: '300px', float: 'left', padding: '8px 0px 0px 35px' } }
 							>
 								<WMSlider
 									defaultValue={ 1 }
+									disabled
 									label="Percent"
 									max={ 100 }
 									min={ 1 }
@@ -91,13 +114,12 @@ const WMFeatureToggleDetails = ({
 							style={ { flex: 1 } }
 						>
 							<div
-								style={ { width: '100px', display: 'inline-block', margin: '10px' } }
+								style={ { width: '100px', display: 'inline-block', margin: '10px', position: 'relative', top: '10px' } }
 							>
 								<WMToggle
-									label={ isRolloutEnabled ? 'Enabled' : 'Disabled' }
+									label={ 'Enable' }
 									toggled={ isRolloutEnabled }
 									onToggle={ () => console.log('i toggle') }
-
 								/>
 							</div>
 							<WMRaisedButton
@@ -110,7 +132,26 @@ const WMFeatureToggleDetails = ({
 					</div>
 				</WMTab>
 				<WMTab label="Industries">Industries</WMTab>
-				<WMTab label="Companies">Companies</WMTab>
+					Industries
+				<WMTab label="Companies">
+				<WMHeading
+					level="2"
+				>
+					Add Companies
+				</WMHeading>
+					<WMAutocomplete
+						floatingLabelText="Add a Company"
+						id="example-autocomplete"
+						dataSource={ dataSource }
+						filter="caseInsensitiveFilter"
+						dataSourceConfig={{ text: 'textKey', value: 'valueKey'}}
+						maxSearchResults={ 10 }
+						onNewRequest={ (selection) => selectCompany(selection) }
+					/>
+					<div>
+						{ companyChips }
+					</div>
+				</WMTab>
 				<WMTab label="Org Unit">Org Unit</WMTab>
 				<WMTab label="Users">Users</WMTab>
 				<WMTab label="Go Live">Go Live</WMTab>

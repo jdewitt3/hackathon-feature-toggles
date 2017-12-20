@@ -59,7 +59,7 @@ class WMFeatureToggleList extends Component {
 							</div>
 							<div style={ styles.toggleListRight }>
 								<WMToggle
-									label="Enabled"
+									label="Production Enabled"
 									toggled
 									onToggle={ () => console.log('i toggle') }
 								/>

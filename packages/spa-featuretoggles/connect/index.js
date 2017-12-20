@@ -80,6 +80,12 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		initList: () => {
 			dispatch(actions.initList());
+		},
+		selectCompany: (selection) => {
+			dispatch({
+				type: 'SELECT_COMPANY',
+				value: selection
+			})
 		}
 	};
 };

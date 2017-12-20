@@ -48,6 +48,7 @@ const initialState = new Map({
 	]),
 	filteredToggles: new List([]),
 	form: blankForm,
+	selectedCompanies: new List([])
 });
 
 const reducer = (
@@ -100,6 +101,12 @@ const reducer = (
 			});
 			return state
 				.set('filteredToggles', filteredFeatures);
+	case 'SELECT_COMPANY':
+		console.log('select company');
+		let companies = state.get('selectedCompanies').toJS();
+		companies.push(action.value);
+		console.log(companies);
+		return state.set('selectedCompanies', companies);
 	default:
 		return state;
 	}
