@@ -29,27 +29,37 @@ class WMFeatureForm extends Component {
             saveForm,
             cancelForm
         } = this.props;
+        const isValid = form.props.name.length && form.props.key.length && form.props.defaultValue.length && form.props.description.length;
 
 		return (
 			<div
 			>
                 <div>
-                    <WMTextField onChange={ (e, val) => updateFormProp('name')(val) } floatingLabelFixed floatingLabelText="Toggle Name" value={form.props.name}/>
-                    <WMTextField onChange={ (e, val) => updateFormProp('key')(val) } floatingLabelFixed floatingLabelText="Key" value={form.props.key}/>
-                    <WMTextField onChange={ (e, val) => updateFormProp('defaultValue')(val) } floatingLabelFixed floatingLabelText="Default Value" value={form.props.defaultValue}/>
-                    <WMRaisedButton
-                        label="Save"
-                        primary
-                        onClick={() => saveForm(form)}
-                    />
-                    <WMRaisedButton
-                        label="Cancel"
-                        secondary
-                         onClick={cancelForm}
-                    />
+                    <div style={{width: '80%', display: 'inline-block'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: '20px'}}>
+                            <WMTextField onChange={ (e, val) => updateFormProp('name')(val) } floatingLabelFixed floatingLabelText="Toggle Name" value={form.props.name}/>
+                            <WMTextField onChange={ (e, val) => updateFormProp('key')(val) } floatingLabelFixed floatingLabelText="Key" value={form.props.key}/>
+                            <WMTextField onChange={ (e, val) => updateFormProp('defaultValue')(val) } floatingLabelFixed floatingLabelText="Default Value" value={form.props.defaultValue}/>
+                        </div>
+                    </div>
+                    <div style={{width: '20%', display: 'inline-block'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                            <WMRaisedButton
+                                label="Save"
+                                disabled={!isValid}
+                                primary
+                                onClick={() => saveForm(form)}
+                            />
+                            <WMRaisedButton
+                                label="Cancel"
+                                secondary
+                                onClick={cancelForm}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <WMTextField onChange={ (e, val) => updateFormProp('description')(val) } floatingLabelFixed floatingLabelText="Description" value={form.props.description}/>
+                <div style={{width: '80%'}}>
+                    <WMTextField style={{width: '100%'}} onChange={ (e, val) => updateFormProp('description')(val) } floatingLabelFixed floatingLabelText="Description" value={form.props.description}/>
                 </div>
 			</div>
 		);
