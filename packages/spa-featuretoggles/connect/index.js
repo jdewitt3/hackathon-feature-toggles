@@ -1,4 +1,4 @@
-//import * as actions from './../actions';
+import * as actions from './../actions';
 
 export const mapStateToProps = (state) => {
 	return state.toJS();
@@ -37,9 +37,12 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 				value: idx
 			});
 		},
-        doSearch: (value) => {
+    doSearch: (value) => {
 			console.log(value);
 			dispatch(actions.searchFeatureList(value));
+		},
+		initList: () => {
+			dispatch(actions.initList());
 		}
 	};
 };

@@ -34,7 +34,7 @@ class WMFeatureTogglePage extends Component {
 	render () {
 		const {
 			form,
-			newToggleForm
+			newToggleForm,
 			doSearch
 		} = this.props;
 		return (

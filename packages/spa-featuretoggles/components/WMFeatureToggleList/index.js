@@ -23,20 +23,20 @@ require('intl-messageformat/dist/locale-data/en');
 class WMFeatureToggleList extends Component {
 	componentDidMount () {
 		const {
-
+			initList
 		} = this.props;
-		//fetchCompanyInfo(companyNumber, isPublic, csrf);
+		initList();
 	}
 
 	render () {
 		const timeAgoEnglish = new javascriptTimeAgo('en-US');
 		const {
-			toggles,
+			filteredToggles,
 			editForm
 		} = this.props;
 
 		const toggleListing = [];
-		for (let i = 0; i < toggles.length; i += 1) {
+		for (let i = 0; i < filteredToggles.length; i += 1) {
 	      toggleListing.push(
 					<WMCard
 						expandable={ false }
@@ -45,17 +45,17 @@ class WMFeatureToggleList extends Component {
 						<div style={ styles.toggleListItem }>
 							<div style={ styles.toggleListLeft }>
 								<div style={ styles.label }>Feature Name</div>
-								<div style={ styles.toggleNameValue }>{ toggles[i].name }</div>
-								<div style={ styles.dateLine }>Added { timeAgoEnglish.format(toggles[i].createdOn) } | Updated { timeAgoEnglish.format(toggles[i].createdOn) }</div>
-								<div>{ toggles[i].description }</div>
+								<div style={ styles.toggleNameValue }>{ filteredToggles[i].name }</div>
+								<div style={ styles.dateLine }>Added { timeAgoEnglish.format(filteredToggles[i].createdOn) } | Updated { timeAgoEnglish.format(filteredToggles[i].createdOn) }</div>
+								<div>{ filteredToggles[i].description }</div>
 							</div>
 							<div style={ styles.toggleListMidLeft }>
 								<div style={ styles.label }>Key</div>
-								<div>{ toggles[i].key }</div>
+								<div>{ filteredToggles[i].key }</div>
 							</div>
 							<div style={ styles.toggleListMidRight }>
 								<div style={ styles.label }>Default Value</div>
-								<div>{ toggles[i].defaultValue }</div>
+								<div>{ filteredToggles[i].defaultValue }</div>
 							</div>
 							<div style={ styles.toggleListRight }>
 								<WMToggle

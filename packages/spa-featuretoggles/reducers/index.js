@@ -28,8 +28,9 @@ const initialState = new Map({
 			defaultValue: 'true',
 			createdOn: new Date(1513413075*1000),
 			updatedOn: new Date(1513513075*1000),
-		})
+		}
 	]),
+	filteredToggles: new List([]),
 	form: blankForm,
 });
 
@@ -70,6 +71,19 @@ const reducer = (
 				.setIn(['form', 'editIdx'], action.value)
 				.setIn(['form', 'props'], state.getIn(['toggles', action.value]))
 				.setIn(['form', 'isActive'], true);
+	case 'INIT_LIST':
+			return state
+				.set('filteredToggles', state.get('toggles'));
+	case 'SEARCH_FEATURE_LIST':
+			let allFeatures = state.get('toggles');
+			let filteredFeatures = allFeatures.filter((feature) => {
+				if (feature.name.toLowerCase().indexOf(action.value.toLowerCase()) > -1) {
+					return true;
+				}
+				return false;
+			});
+			return state
+				.set('filteredToggles', filteredFeatures);
 	default:
 		return state;
 	}
