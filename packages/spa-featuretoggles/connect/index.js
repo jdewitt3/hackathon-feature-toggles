@@ -1,4 +1,5 @@
 import * as actions from './../actions';
+import fetch from 'isomorphic-fetch';
 
 export const mapStateToProps = (state) => {
 	return state.toJS();
@@ -21,9 +22,37 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 				type: 'CANCEL_FORM',
 			});
 		},
-		saveForm: () => {
+		saveForm: (form) => {
 			dispatch({
 				type: 'SAVE_FORM',
+			});
+			// tie in request
+			console.log(form.props);
+			const data = {
+				overrides: [
+					{
+						name: form.props.name,
+						dimension: { default: true },
+						value: form.props.defaultValue,
+						metadata: {
+							key: form.props.key,
+							description: form.props.description,
+							createdOn: Date.now(),
+							createdOn: Date.now()
+						}
+					}
+				]
+			}
+			return fetch('http://api-gtw.dev.workmarket.com/v3/setting/create', {
+				credentials: 'same-origin',
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: new Headers({
+					'Content-Type': 'application/json'
+				}),
+			})
+			.then((response) => {
+				console.log(response);
 			});
 		},
 		newToggleForm: () => {

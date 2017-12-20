@@ -40,7 +40,7 @@ class WMFeatureForm extends Component {
                     <WMRaisedButton
                         label="Save"
                         primary
-                        onClick={saveForm}
+                        onClick={() => saveForm(form)}
                     />
                     <WMRaisedButton
                         label="Cancel"
