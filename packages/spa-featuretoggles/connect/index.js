@@ -29,21 +29,17 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 			// tie in request
 			console.log(form.props);
 			const data = {
-				overrides: [
-					{
-						name: form.props.name,
-						dimension: { default: true },
-						value: form.props.defaultValue,
-						metadata: {
-							key: form.props.key,
-							description: form.props.description,
-							createdOn: Date.now(),
-							updatedOn: Date.now()
-						}
-					}
-				]
+				name: form.props.name,
+				defaultValue: form.props.defaultValue,
+				label: "feature-toggles",
+				metadata: {
+					key: form.props.key,
+					description: form.props.description,
+					createdOn: Date.now(),
+					updatedOn: Date.now()
+				}
 			}
-			fetch('AUTH CONNECTION STRING', {
+			fetch('AUTH_STRING', {
 				method: 'POST',
 				headers: new Headers({
 					'content-type': 'application/json'
@@ -52,7 +48,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 				response.json().then((responseData) => {
 					const token = `Bearer ${responseData.result.payload[0].accessToken}`;
 					console.log(token);
-					return fetch('http://api-gtw.dev.workmarket.com/v3/setting/create', {
+					return fetch('http://localhost:8888/v3/setting/create', {
 						credentials: 'same-origin',
 						method: 'POST',
 						body: JSON.stringify(data),
