@@ -38,21 +38,33 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 							key: form.props.key,
 							description: form.props.description,
 							createdOn: Date.now(),
-							createdOn: Date.now()
+							updatedOn: Date.now()
 						}
 					}
 				]
 			}
-			return fetch('http://api-gtw.dev.workmarket.com/v3/setting/create', {
-				credentials: 'same-origin',
+			fetch('AUTH CONNECTION STRING', {
 				method: 'POST',
-				body: JSON.stringify(data),
 				headers: new Headers({
-					'Content-Type': 'application/json'
-				}),
-			})
-			.then((response) => {
-				console.log(response);
+					'content-type': 'application/json'
+				})
+			}).then((response) => {
+				response.json().then((responseData) => {
+					const token = `Bearer ${responseData.result.payload[0].accessToken}`;
+					console.log(token);
+					return fetch('http://api-gtw.dev.workmarket.com/v3/setting/create', {
+						credentials: 'same-origin',
+						method: 'POST',
+						body: JSON.stringify(data),
+						headers: new Headers({
+							'authorization': token,
+							'Content-Type': 'application/json'
+						}),
+					})
+					.then((response) => {
+						console.log(response);
+					});
+				})
 			});
 		},
 		newToggleForm: () => {
