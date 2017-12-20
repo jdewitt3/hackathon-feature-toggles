@@ -16,6 +16,7 @@ import {
 	mapDispatchToProps,
 } from '../../connect';
 import styles from '../../styles';
+import WMFeatureToggleDetails from '../WMFeatureToggleDetails';
 
 javascriptTimeAgo.locale(require('javascript-time-ago/locales/en'));
 require('javascript-time-ago/intl-messageformat-global');
@@ -61,6 +62,12 @@ class WMFeatureForm extends Component {
                 <div style={{width: '80%'}}>
                     <WMTextField style={{width: '100%'}} onChange={ (e, val) => updateFormProp('description')(val) } floatingLabelFixed floatingLabelText="Description" value={form.props.description}/>
                 </div>
+                <WMFeatureToggleDetails
+                    isDirtyState={ true }
+                    isRolloutEnable={ true }
+                    percentValue={ 12 }
+                    typeValue={ 1 }
+                />
 			</div>
 		);
 	}
