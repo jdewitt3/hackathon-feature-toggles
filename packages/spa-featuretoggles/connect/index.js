@@ -36,12 +36,10 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 				type: 'EDIT_FORM',
 				value: idx
 			});
-		}
-		/*fetchCompanyInfo: (companyNumber, isPublic) => {
-			dispatch(actions.fetchCompanyInfo(companyNumber, isPublic, csrf));
 		},
-		toggleFollowCompany: (companyNumber, followedByUser) => {
-			dispatch(actions.toggleFollowCompany(companyNumber, csrf, followedByUser));
-		}, */
+        doSearch: (value) => {
+			console.log(value);
+			dispatch(actions.searchFeatureList(value));
+		}
 	};
 };

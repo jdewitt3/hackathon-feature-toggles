@@ -27,7 +27,6 @@ import WMFeatureForm from '../WMFeatureForm';
 class WMFeatureTogglePage extends Component {
 	componentDidMount () {
 		const {
-
 		} = this.props;
 		//fetchCompanyInfo(companyNumber, isPublic, csrf);
 	}
@@ -36,6 +35,7 @@ class WMFeatureTogglePage extends Component {
 		const {
 			form,
 			newToggleForm
+			doSearch
 		} = this.props;
 		return (
 			<div
@@ -49,7 +49,8 @@ class WMFeatureTogglePage extends Component {
 						<WMTextField
 							disabled={ false }
 							id="search-toggles"
-							defaultValue="Search for a Feature"
+							placeholder="Search for a Feature"
+							onChange={ (event, value) => doSearch(value) }
 						/>
 						<WMRaisedButton
 							label="New Feature"

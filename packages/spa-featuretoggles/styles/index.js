@@ -31,5 +31,9 @@ export default {
 	},
 	toggleNameValue: {
 		fontWeight: 'bold'
+	},
+	dateLine: {
+		fontSize: '12px',
+		marginBottom: '8px'
 	}
 }

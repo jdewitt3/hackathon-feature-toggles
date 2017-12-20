@@ -44,9 +44,9 @@ class WMFeatureToggleList extends Component {
 					>
 						<div style={ styles.toggleListItem }>
 							<div style={ styles.toggleListLeft }>
-								<div style={ styles.label }>Toggle Name</div>
+								<div style={ styles.label }>Feature Name</div>
 								<div style={ styles.toggleNameValue }>{ toggles[i].name }</div>
-								<div>{ timeAgoEnglish.format(toggles[i].createdOn) }</div>
+								<div style={ styles.dateLine }>Added { timeAgoEnglish.format(toggles[i].createdOn) } | Updated { timeAgoEnglish.format(toggles[i].createdOn) }</div>
 								<div>{ toggles[i].description }</div>
 							</div>
 							<div style={ styles.toggleListMidLeft }>

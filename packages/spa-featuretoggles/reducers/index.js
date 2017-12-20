@@ -1,5 +1,5 @@
 import Immutable, { Map, List } from 'immutable';
-//import * as types from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 const blankForm = new Map({
 	isActive: false,
 	editIdx: null,
@@ -10,19 +10,20 @@ const blankForm = new Map({
 		description: '',
 	}),
 });
+
 const initialState = new Map({
 	toggles: new List([
-		new Map({
-			name: 'Test Toggle',
-			key: 'testToggle',
+		{
+			name: 'Test Feature',
+			key: 'testFeature',
 			description: 'just a test yall',
 			defaultValue: 'false',
 			createdOn: new Date(1513713075*1000),
 			updatedOn: new Date(1513713075*1000),
-		}),
-		new Map({
-			name: 'Test Toggle 2',
-			key: 'testToggle2',
+		},
+		{
+			name: 'Test Feature 2',
+			key: 'teastFeature2',
 			description: 'Another test!',
 			defaultValue: 'true',
 			createdOn: new Date(1513413075*1000),
